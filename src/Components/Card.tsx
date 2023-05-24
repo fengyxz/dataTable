@@ -15,8 +15,9 @@ const Card = (props: Props) => {
   const [flag, setFlag] = useState<number[]>(new Array(30).fill(0))
 
   let { x, y, parsedata } = props;
-  let num:number = x[0].length;
-  const initFlag = new Array(num).fill(0);
+  if(x === undefined)x = [];
+  // let num:number = x.length;
+  // const initFlag = new Array(num).fill(0);
   // setFlag(initFlag);
   const dataObj: { [key: string]: any } = calculate(x, y, flag, parsedata);
   // console.log("parsedata"+JSON.stringify(parsedata));
@@ -39,10 +40,10 @@ const Card = (props: Props) => {
       <table>
         <thead>
           <tr>
-            {y.map((yname, index) => {
+            {y?.map((yname, index) => {
               return <th key={yname + index}>{yname}</th>;
             })}
-            {x.map((xname, index) => {
+            {x?.map((xname, index) => {
               return (
                 <th key={xname + index}>
                   {xname}
@@ -51,9 +52,9 @@ const Card = (props: Props) => {
                     id="flagtable"
                   >
                     <div className="relative group" id="dropdown-flag">
-                      <a href="#" className="block" id="dropdown-link">
+                      <button id="dropdown-link">
                         {flag[index]===0?"sum":"mean"}
-                      </a>
+                      </button>
                       <ul
                         className="hidden absolute bg-white z-10 w-full border rounded shadow-md divide-y group-hover:block"
                         id="dropdown-items"
