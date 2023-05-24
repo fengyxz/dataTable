@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./App.css";
 import Card from './Components/Card';
 import Papa from 'papaparse'
+import Choice from './Components/Choice';
 
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
         accept=".csv"
         onChange={changeHandler}
         style={{ display: "block", margin: "10px auto" }}
+        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
       />
     </div>
 
@@ -142,6 +144,20 @@ function App() {
             Generate
           </button>
         </div>
+
+        <div className='flex justify-between w-72'>
+        <Choice
+         y={selectY}
+         setY={setSelectY}
+         title={"Sort the Y"}
+        />
+        <Choice
+         y={selectX}
+         setY={setSelectX}
+         title={"Sort the X"}
+        />
+        </div>
+        
       </div>
       {/* <Card
          parsedata={parseData}
