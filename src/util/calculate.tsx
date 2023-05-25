@@ -52,4 +52,19 @@ function calculate(x:string[],y:string[],flag:number[],data:any):{[key:string]:a
   return obj;
 }
 
+// function calculate(x:string[],y:string[],flag:number[],parsedata:any){
+//   const worker = new Worker('./woker.js')
+//   const generate = document.querySelector('#generate')
+//   generate?.addEventListener('click',(event)=>{
+//     worker.postMessage({x, y, flag, parsedata})
+//   })
+//   let dataObj:any = [];
+//   worker.onmessage = function(message){
+//     console.log("finished calculation");
+//     dataObj = message.data;
+//   }
+//   return dataObj;
+// }
+
 export { calculate };
+
