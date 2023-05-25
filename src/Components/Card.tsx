@@ -11,12 +11,15 @@ type Props = {
 };
 
 const Card = (props: Props) => {
+  let { x, y, parsedata } = props;
   const generate = document.getElementById("generate");
   const [flag, setFlag] = useState<number[]>(new Array(30).fill(0));
+  const [nx, setNx] = useState<string[]>(x);
+  const [ny, setNy] = useState<string[]>(y);
   const [dataObj, setDataObj] = useState<{ [key: string]: any } | undefined>(
     undefined
   );
-  let { x, y, parsedata } = props;
+  
   if (x === undefined) x = [];
   // let num:number = x.length;
   // const initFlag = new Array(num).fill(0);
@@ -30,16 +33,14 @@ const Card = (props: Props) => {
   worker.addEventListener("message", (e) => {
    
     setDataObj(e.data);
-  
+    setNx(x);
+    setNy(y);
     // console.log(dataObj);
   });
-  let nx = x;
-  let ny = y;
+
 
   generate?.addEventListener("click", (event) =>{
     worker.postMessage({ x, y, flag, parsedata })
-    nx = x;
-    ny = y
   }
   );
   let element = <></>;
